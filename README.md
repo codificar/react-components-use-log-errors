@@ -16,8 +16,10 @@ execute the command:
 yarn
 ```
 
-
+ 
 <img src="https://git.codificar.com.br/react-components/use-log-errors/-/raw/master/.gitlab/demo.png" width="25%" />
+ 
+
 
 ## Basic Usage
 
