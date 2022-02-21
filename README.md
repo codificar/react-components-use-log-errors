@@ -90,7 +90,7 @@ const defaultOptions: Options = {
    buttonTitle: 'Voltar',
    buttoncolor: 'grey',
    textButtonColor: 'white',
-}
+};
 ```
 
 | Prop    |    Default     |       Type        | isRequired | Description                       |
