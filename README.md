@@ -17,13 +17,13 @@ yarn
 ```
 
 
-<img src="./github/demo.png" />
+<img src="https://git.codificar.com.br/react-components/use-log-errors/-/raw/master/.gitlab/demo.png" width="25%" />
 
 ## Basic Usage
 
 Import the `ErrorBoundary` and wrap it over the main application container as a context provider.
 
-```ts
+```tsx
 // apps with old architecture JS
 // file: App/Containers/App.js
 import { ErrorBoundary } from '@codificar/use-log-errors';
@@ -45,7 +45,7 @@ const App : React.FC () => {
 }
 ```
 
-```ts
+```tsx
 // apps with others architectures
 // file: Look for your application's main file.
 // Usually the name is App.ts or index.ts
