@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 import React, { FC } from 'react';
-import { handlerException } from '../../api';
+import { handleException } from '../../api';
 import { useErrorBoundary } from 'use-error-boundary';
 import ErrorScreen from './ErrorComponent';
 
@@ -22,7 +22,7 @@ type Props = {
 const ErrorBoundary: FC<Props> = ({ children, appType, baseUrl, options }) => {
   const { ErrorBoundary, reset } = useErrorBoundary({
     onDidCatch: (error: Error, errorInfo) => {
-      handlerException({
+      handleException({
         appType,
         baseUrl,
         error,

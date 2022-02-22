@@ -16,7 +16,6 @@ execute the command:
 yarn
 ```
 
-
 <img src="./github/demo.png" />
 
 ## Basic Usage
@@ -84,11 +83,11 @@ type Options = {
 };
 
 const defaultOptions: Options = {
-   message: 'Parece que um erro aconteceu, volte atrás e tente novamente.',
-   buttonTitle: 'Voltar',
-   buttoncolor: 'grey',
-   textButtonColor: 'white',
-}
+  message: 'Parece que um erro aconteceu, volte atrás e tente novamente.',
+  buttonTitle: 'Voltar',
+  buttoncolor: 'grey',
+  textButtonColor: 'white',
+};
 ```
 
 | Prop    |    Default     |       Type        | isRequired | Description                       |
@@ -97,4 +96,36 @@ const defaultOptions: Options = {
 | baseUrl |       -        |     `string`      |     ✔️     | base_url to send error log        |
 | options | defaultOptions |     `Options`     |  optional  | Custom options for ErrorComponent |
 
+## Interceptors
 
+To log api errors, import the `sendLogError` interceptor.
+
+```ts
+// to use globally, apply on interceptor.
+
+import { sendLogError } from '@codificar/use-log-errors';
+// ...
+api.interceptors.response.use(successResponse, (error: AxiosError) => {
+  const logErrorParams = {
+    appType: 'user',
+    baseUrl: BASE_URL,
+    error,
+  };
+  sendLogError(logErrorParams);
+});
+```
+
+```ts
+// to use locally: apply on try catch.
+
+import { sendLogError } from '@codificar/use-log-errors';
+// ...
+const getExemple = () => {
+  try {
+    // ..
+    await api.getSomeThing();
+  } catch (error) {
+    sendLogError(error);
+  }
+};
+```
