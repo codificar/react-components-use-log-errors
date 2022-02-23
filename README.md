@@ -105,7 +105,7 @@ const getExemple = () => {
 };
 ```
 
-## Custom handlers for
+## Custom handlers
 
 if you need a custom handler, use the prop `customHandler`.
 
