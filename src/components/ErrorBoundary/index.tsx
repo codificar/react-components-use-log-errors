@@ -5,31 +5,44 @@ import { useErrorBoundary } from 'use-error-boundary';
 import ErrorScreen from './ErrorComponent';
 
 export type Options = {
-  message: string;
-  buttonTitle: string;
-  buttonColor: string;
-  textButtonColor: string;
+  message?: string;
+  buttonTitle?: string;
+  buttonColor?: string;
+  textButtonColor?: string;
 };
 
 type Props = {
   children: JSX.Element | JSX.Element[];
-  appType: 'user' | 'provider';
-  baseUrl: string;
+  appType?: 'user' | 'provider';
+  baseUrl?: string;
   screen?: string;
+  customHandler?(error: any, errorInfo: any): Promise<void>;
   options?: Options;
 };
 
-const ErrorBoundary: FC<Props> = ({ children, appType, baseUrl, options }) => {
+const ErrorBoundary: FC<Props> = ({
+  children,
+  appType = 'user',
+  baseUrl = '',
+  options,
+  customHandler,
+}) => {
   const { ErrorBoundary, reset } = useErrorBoundary({
     onDidCatch: (error: Error, errorInfo) => {
-      handleException({
-        appType,
-        baseUrl,
-        error,
-        errorInfo,
-      })
-        .then(() => console.log('success-log-send:', errorInfo))
-        .catch((error) => console.log({ error }));
+      if (customHandler !== undefined) {
+        customHandler(error, errorInfo)
+          .then(() => console.log('success-log-send'))
+          .catch((error) => console.log({ error }));
+      } else {
+        handleException({
+          appType,
+          baseUrl,
+          error,
+          errorInfo,
+        })
+          .then(() => console.log('success-log-send'))
+          .catch((error) => console.log({ error }));
+      }
     },
   });
 
