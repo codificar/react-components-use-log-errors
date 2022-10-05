@@ -7,6 +7,7 @@ const logError = `/api/lib/rn-log-error${params}`;
 
 export type ExceptionHandlerProps = {
   baseUrl: string;
+  projectName?: string;
   appType: 'user' | 'provider';
   error: any;
   errorInfo: any;
@@ -15,12 +16,15 @@ export type ExceptionHandlerProps = {
 export const handleException = async (
   data: ExceptionHandlerProps
 ): Promise<void> => {
-  const { baseUrl, appType, error, errorInfo } = data;
+  const { baseUrl, projectName, appType, error, errorInfo } = data;
   const infoError = JSON.stringify(errorInfo);
   const headers = {
     'Content-Type': 'application/json',
   };
-  const url = `${baseUrl}${logError}${infoError}&app=AppType: ${appType} |&origin=${error} - `;
+
+  const errorReport = String(error) + ' ' + error.stack;
+
+  const url = `${baseUrl}${logError}${errorReport}${infoError}&app=${projectName || ""} |AppType: ${appType} |&origin=${error} - `;
 
   await axios.get(url, { headers });
 };
