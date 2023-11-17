@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import type { Options } from '.';
 import { styles } from './styles';
+import strings from '../../lang/strings';
 
 type ErrorComponentProps = {
   options?: Options;
@@ -10,11 +11,9 @@ type ErrorComponentProps = {
 
 const ErrorComponent: React.FC<ErrorComponentProps> = ({ options, reset }) => {
   const defaultOptions = {
-    message:
-      options?.message ||
-      'Parece que um erro aconteceu, volte atrás e tente novamente.',
-    buttonTitle: options?.buttonTitle || 'Voltar',
-    buttonColor: options?.buttonColor || 'grey',
+    message:         options?.message || strings.error.message,
+    buttonTitle:     options?.buttonTitle || strings.error.buttonTitle,
+    buttonColor:     options?.buttonColor || 'grey',
     textButtonColor: options?.textButtonColor || 'white',
   };
   const { message, buttonTitle, buttonColor, textButtonColor } = defaultOptions;
