@@ -1,0 +1,6 @@
+{
+  "error": {
+      "message": "Parece que ocurrió un error, retrocede y vuelve a intentarlo.",
+      "buttonTitle": "Volver"
+  }
+}

@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 import React, { FC } from 'react';
-import { handleException } from '../../api';
+import { handlerException } from '../../api';
 import { useErrorBoundary } from 'use-error-boundary';
 import ErrorScreen from './ErrorComponent';
 
@@ -34,7 +34,7 @@ const ErrorBoundary: FC<Props> = ({
           .then(() => console.log('success-log-send'))
           .catch((error) => console.log({ error }));
       } else {
-        handleException({
+        handlerException({
           appType,
           baseUrl,
           error,
