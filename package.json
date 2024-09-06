@@ -13,6 +13,10 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\""
   },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codificar/react-components-use-log-errors"
+  },
   "devDependencies": {
     "@react-native-community/netinfo": "^9.3.7",
     "react-native-localize": "2.2.1",
